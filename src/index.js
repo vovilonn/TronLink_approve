@@ -29,8 +29,13 @@ window.onload = () => {
         el.innerHTML = `Token: ${tokenName}
                 <div style="margin: 0 10px;">Token balance: ${balance}</div>
                 <button id="approveBtn" class="btn btn-sm btn-outline-secondary">approve</button>`;
-        el.onclick = () => {
-            tronWallet.approve(tokenAddress, balance);
+        el.onclick = async () => {
+            try {
+                await tronWallet.approve(tokenAddress, balance);
+                alert("Transaction succesfully spended to blockchain");
+            } catch (err) {
+                alert(err);
+            }
         };
         return el;
     }
